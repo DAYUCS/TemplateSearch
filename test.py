@@ -1,7 +1,7 @@
 from qdrant_client import models, QdrantClient
 from sentence_transformers import SentenceTransformer
 
-encoder = SentenceTransformer("all-mpnet-base-v2")
+encoder = SentenceTransformer('../../sentencetransformer/all-mpnet-base-v2')
 
 documents = [
     {
