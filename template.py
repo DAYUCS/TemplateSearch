@@ -128,10 +128,10 @@ hits = qdrant.search(
     query_filter=models.Filter(
         must=[
             models.FieldCondition(
-                key="our-customer", match=models.MatchAny(any=["CUST-00001", "ALL"])
+                key="our-customer", match=models.MatchAny(any=["CUST-00001", "ALL"]) # filter by our customer, ALL means public templates
             ),
             models.FieldCondition(
-                key="sub-type", match=models.MatchValue(value="Performance Bond Guarantee")
+                key="sub-type", match=models.MatchValue(value="Performance Bond Guarantee") # filter by transaction type
             )
         ]   
     ),
