@@ -1,7 +1,7 @@
 from qdrant_client import models, QdrantClient
 from sentence_transformers import SentenceTransformer
 
-encoder = SentenceTransformer('../../sentencetransformer/all-mpnet-base-v2')
+encoder = SentenceTransformer("../../sentencetransformer/all-mpnet-base-v2", device="cpu") # or device="cuda" if you have a GPU
 
 documents = [
     {
@@ -107,6 +107,13 @@ qdrant.upload_records(
 hits = qdrant.search(
     collection_name="my_books",
     query_vector=encoder.encode("alien invasion").tolist(),
+    query_filter=models.Filter(
+        must=[
+            models.FieldCondition(
+                key="year", range=models.Range(gte=2000)
+            )
+        ]   
+    ),
     limit=3,
 )
 
