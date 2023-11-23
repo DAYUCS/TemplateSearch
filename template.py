@@ -1,7 +1,7 @@
 from qdrant_client import models, QdrantClient
 from sentence_transformers import SentenceTransformer
 
-encoder = SentenceTransformer("../../sentencetransformer/all-mpnet-base-v2", device="cpu") # or device="cuda" if you have a GPU
+encoder = SentenceTransformer("../../sentencetransformer/paraphrase-multilingual-mpnet-base-v2", device="cpu") # or device="cuda" if you have a GPU
 
 documents = [
     {
