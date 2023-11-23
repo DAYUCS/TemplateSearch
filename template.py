@@ -51,7 +51,7 @@ documents = [
         "currency": "USD",
         "amount": 100000,
         "transaction-date": "2023-10-01",
-        "our-customer": "ALL",
+        "our-customer": ":ALL:",
         "rdb-id": "RDB-00005",
     },
     {
@@ -97,7 +97,7 @@ documents = [
     
 ]
 
-qdrant = QdrantClient(":memory:")
+qdrant = QdrantClient(url="http://10.39.101.186:6333", api_key="eximbills2024futures")
 
 qdrant.recreate_collection(
     collection_name="my_templates",
@@ -128,7 +128,7 @@ hits = qdrant.search(
     query_filter=models.Filter(
         must=[
             models.FieldCondition(
-                key="our-customer", match=models.MatchAny(any=["CUST-00001", "ALL"]) # filter by our customer, ALL means public templates
+                key="our-customer", match=models.MatchAny(any=["CUST-00001", ":ALL:"]) # filter by our customer, :ALL: means public templates
             ),
             models.FieldCondition(
                 key="sub-type", match=models.MatchValue(value="Performance Bond Guarantee") # filter by transaction type

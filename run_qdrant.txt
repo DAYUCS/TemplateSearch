@@ -1,0 +1,4 @@
+docker run -d -p 6333:6333 -p 6334:6334 \
+    -v /home/dayu/qdrant/storage:/qdrant/sotrage:z \
+    -v /home/dayu/qdrant/config/custom_config.yaml:/qdrant/config/production.yaml \
+    qdrant/qdrant
