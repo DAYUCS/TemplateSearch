@@ -4,7 +4,7 @@ import uvicorn
 import logging
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.responses import HTMLResponse
 from dotenv import load_dotenv
 from pathlib import Path
 from template import template
@@ -31,34 +31,16 @@ if __name__ == "__main__":
     server = uvicorn.Server(config)
     server.run()
 
-class Product(BaseModel):
-    prodId: int
-    prodName: str
-    price: float
-    stock: int
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "prodId": 1,
-                "prodName": "Iphone",
-                "price": 100,
-                "stock": 10
-            }
-        }
-
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return {"message": "Hello World"}
-
-@app.get("/employee/{name}/{age}")
-async def employee(name:str, age:int):
-    return {"name": name, "age": age}
-
-@app.get("/employee/{name}")
-async def get_employee(name:str, age:int=57):
-    return {"name": name, "age": age}
-
-@app.post("/product")
-async def addnew(product:Product):
-    return product
+    return """
+    <html>
+        <head>
+            <title>Eximbills Transaction AI Service</title>
+        </head>
+        <body>
+            <h1>Welcome to Eximbills Transaction AI Service</h1>
+            <A href="/docs">Try it out</A>
+        </body>
+    </html>
+    """

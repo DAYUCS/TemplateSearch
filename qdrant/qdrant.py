@@ -1,4 +1,5 @@
 import logging
+import uuid
 from qdrant_client import models, QdrantClient
 from qdrant_client.http.exceptions import UnexpectedResponse
 from sentence_transformers import SentenceTransformer
@@ -28,3 +29,17 @@ def create_collection(collection_name="template"):
         return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
     else:
         return {'code': 200, 'reason': 'OK'}
+    
+def upload_templates(transactions):
+    logging.info("Uploading templates...")
+    return qclient.upload_records(
+        collection_name="template",
+        records=[
+            models.Record(
+                id=str(uuid.uuid4()),
+                vector=encoder.encode(trx["transactionSummary"]).tolist(), 
+                payload=trx
+            )
+            for idx, trx in enumerate(transactions)
+        ],
+    )
