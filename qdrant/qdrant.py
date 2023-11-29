@@ -26,20 +26,27 @@ def create_collection(collection_name="template"):
             ),
         )
     except UnexpectedResponse:
+        logging.error(UnexpectedResponse.content)
         return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
     else:
         return {'code': 200, 'reason': 'OK'}
     
 def upload_templates(transactions):
     logging.info("Uploading templates...")
-    return qclient.upload_records(
-        collection_name="template",
-        records=[
-            models.Record(
-                id=str(uuid.uuid4()),
-                vector=encoder.encode(trx["transactionSummary"]).tolist(), 
-                payload=trx
-            )
-            for idx, trx in enumerate(transactions)
-        ],
-    )
+    try:
+        qclient.upload_records(
+            collection_name="template",
+            records=[
+                models.Record(
+                    id=str(uuid.uuid4()),
+                    vector=encoder.encode(trx["transactionSummary"]).tolist(), 
+                    payload=trx
+                )
+                for idx, trx in enumerate(transactions)
+            ],
+        )
+    except UnexpectedResponse:
+        logging.error(UnexpectedResponse.content)
+        return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
+    else:
+        return {'code': 200, 'reason': 'OK'}
