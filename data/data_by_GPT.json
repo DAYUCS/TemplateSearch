@@ -1,0 +1,65 @@
+{
+    "RegisterLetterOfCredit": {
+        "lc_number": "LC2023001234",
+        "issuing_bank_details": {
+            "name": "Trade Bank of Commerce",
+            "address": "123 Trade Lane, Commerce City, CS 98765",
+            "contact": "+1 234 567 8900"
+        },
+        "applicant": {
+            "name": "XYZ Importers Ltd.",
+            "address": "456 Importers Street, TradeTown, TT 54321",
+            "contact": "+1 098 765 4321"
+        },
+        "beneficiary": {
+            "name": "ABC Exporters Inc.",
+            "address": "789 Export Drive, Global City, GC 12345",
+            "contact": "+44 1234 56789"
+        },
+        "lc_amount": "100000.00",
+        "currency": "USD",
+        "terms_and_conditions": "Goods to be shipped in refrigerated containers"
+    },
+    "IssueLetterOfCredit": {
+        "lc_number": "LC2023001234",
+        "lc_issue_date": "2023-05-01",
+        "advising_bank": {
+            "name": "Global Trade Bank",
+            "address": "321 International Avenue, World City, WC 65231",
+            "contact": "+44 9876 54321"
+        },
+        "latest_shipment_date": "2023-06-30",
+        "shipment_details": {
+            "from": "Port of Global City",
+            "to": "Port of Commerce City",
+            "goods_description": "Frozen Seafood",
+            "quantity": "20 tons",
+            "packaging": "Refrigerated containers"
+        }
+    },
+    "IssueAmendmentOneStep": {
+        "lc_number": "LC2023001234",
+        "amendment_number": "01",
+        "amendment_date": "2023-05-15",
+        "changes": {
+            "lc_amount": "110000.00",
+            "new_terms": "Ship extra 2 tons of Frozen Shrimp"
+        }
+    },
+    "RegisterDocumentLC": {
+        "lc_number": "LC2023001234",
+        "document_number": "BL2023007896",
+        "presentation_date": "2023-07-01",
+        "documents_presented": ["Bill of Lading", "Invoice", "Packing List"]
+    },
+    "PaymentAtMaturity": {
+        "lc_number": "LC2023001234",
+        "payment_date": "2023-09-01",
+        "amount_paid": "110000.00",
+        "currency": "USD",
+        "beneficiary_details": {
+            "name": "ABC Exporters Inc.",
+            "account_number": "GB82WEST12345698765432"
+        }
+    }
+}

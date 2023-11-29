@@ -1,0 +1,22 @@
+The system has several functions related to the issuance of a Letter of Credit (LC):
+
+Import Letter of Credit (IPLC) Functions:
+
+Register Letter of Credit: Capturing key information such as LC number, issuing bank details, applicant and beneficiary information, LC amount, terms and conditions.
+Issue Letter of Credit: Preparing the LC document, including terms and conditions, and sending it to the beneficiary or their bank.
+Issue Letter of Credit One Step: Combines the registration and issuance of the import LC in one step, speeding up the process.
+Issue Amendment One Step: Issues amendments to the LC terms and conditions in a single step, eliminating separate registration and advising processes for amendments.
+Register Document LC: After goods are shipped, the exporter's bank presents required documents to the issuing bank, which are then registered and recorded in the system.
+Check Document: The issuing bank checks the presented documents for compliance with the LC terms.
+Register Discrepancies: If discrepancies are found during document examination, the issuing bank registers these in their system.
+Discrepancy Response MT752: Communication and negotiation to resolve the documented discrepancies.
+Export Letter of Credit (EPLC) Functions:
+
+Register LC: Registering the LC request received from the exporter, capturing essential information needed.
+Advise LC: Sending the registered LC to the advising bank located in the beneficiary's country.
+Advise LC One Step: A function to quickly advise the LC to the beneficiary’s bank in one action.
+Other Functions:
+
+Payment at Maturity: Refers to the payment made by the issuing bank upon maturity of the LC.
+Export LC Discounting: If the exporter needs immediate liquidity, they can request the bank to discount the export LC.
+These functions comprise the various stages and processes involved in issuing, amending, and managing import and export Letters of Credit in a trade finance system. The descriptions here cover core operations that would be critical in the process of LC issuance, from registration to payment, including handling amendments and discrepancies.
