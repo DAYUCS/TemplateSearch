@@ -5,7 +5,7 @@ import logging.config
 import yaml
 
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from dotenv import load_dotenv
 from pathlib import Path
 from template import template
@@ -47,12 +47,13 @@ if __name__ == "__main__":
     server = uvicorn.Server(config)
     server.run()
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def root():
     return """
     <html>
         <head>
             <title>Eximbills Transaction AI Service</title>
+            <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
         </head>
         <body>
             <h1>Welcome to Eximbills Transaction AI Service</h1>
@@ -60,3 +61,7 @@ async def root():
         </body>
     </html>
     """
+
+@app.get('/images/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse('./images/favicon.ico')
