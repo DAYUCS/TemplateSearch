@@ -28,13 +28,17 @@ logging.config.dictConfig(config)
 # Get a logger object
 logger = logging.getLogger(environment)
 
-# create qdrant client and embedding encoder
+# Create qdrant client
 QDRANT_URL = os.getenv('QDRANT_URL')
 QDRANT_API_KEY = os.getenv('QDRANT_API_KEY')
 logging.info("Creating qdrant client to " + QDRANT_URL)
 qdrant.qclient = qdrant.create_qdrant_client(QDRANT_URL, QDRANT_API_KEY)
+
+# Create embedding encoder
+ST_MODEL = os.getenv('ST_MODEL')
+ST_DEVICE = os.getenv('ST_DEVICE')
 logging.info("Creating embedder")
-qdrant.encoder = qdrant.create_embedder()
+qdrant.encoder = qdrant.create_embedder(ST_MODEL, ST_DEVICE)
 
 app = FastAPI()
 

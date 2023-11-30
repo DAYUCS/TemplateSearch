@@ -10,8 +10,8 @@ def create_qdrant_client(url, api_key):
     qclient = QdrantClient(url=url, api_key=api_key)
     return qclient
 
-def create_embedder():
-    encoder = SentenceTransformer("../../../sentencetransformer/paraphrase-multilingual-mpnet-base-v2", device="cpu") # or device="cuda" if you have a GPU
+def create_embedder(ST_MODEL, ST_DEVICE):
+    encoder = SentenceTransformer(ST_MODEL, device=ST_DEVICE)
     return encoder
 
 def create_collection(collection_name="template"):
