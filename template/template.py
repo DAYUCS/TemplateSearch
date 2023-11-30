@@ -2,7 +2,7 @@ import logging
 import json
 from pydantic import BaseModel
 from typing import List
-from fastapi import APIRouter, status
+from fastapi import APIRouter
 from qdrant import qdrant
 
 class Transaction(BaseModel):
@@ -27,10 +27,6 @@ class Transaction(BaseModel):
 
 router = APIRouter(prefix="/template",
     tags=["template"])
-
-@router.get("/hello", status_code=status.HTTP_200_OK)
-async def template_hello():
-    return {"message": "Hello Templates"}
 
 # create template collection
 @router.put("/create")
