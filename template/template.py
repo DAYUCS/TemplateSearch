@@ -41,3 +41,9 @@ async def upload_templates(transactions: List[Transaction]):
     json_data = json.dumps(transactions, default=lambda x: x.__dict__)
     json_object = json.loads(json_data)
     return qdrant.upload_templates(json_object)
+
+# search templates
+@router.get("/search")
+async def search_templates(userCommand: str, unitCode: str, moduleName: str, customerId: str, limit: int = 3):
+    logging.info("Searching templates")
+    return qdrant.search_templates(userCommand, unitCode, moduleName, customerId, limit)

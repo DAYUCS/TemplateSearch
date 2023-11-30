@@ -50,3 +50,29 @@ def upload_templates(transactions):
         return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
     else:
         return {'code': 200, 'reason': 'OK'}
+    
+def search_templates(user_Command, unit_Code, module_Name, customer_Id, limitRecords):
+    logging.info("Searching templates...")
+    try:
+        hits = qclient.search(
+            collection_name="template",
+            query_vector=encoder.encode(user_Command).tolist(),
+            query_filter=models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="customerId", match=models.MatchAny(any=[customer_Id, ":ALL:"]) # filter by our customer, :ALL: means public templates
+                    ),
+                    models.FieldCondition(
+                        key="unitCode", match=models.MatchValue(value=unit_Code) # filter by unit code
+                    ),
+                    models.FieldCondition(
+                        key="moduleName", match=models.MatchValue(value=module_Name) # filter by module
+                    )
+                ]
+            ),
+            limit=limitRecords,
+        )
+        return hits
+    except UnexpectedResponse:
+        logging.error(UnexpectedResponse.content)
+        return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}

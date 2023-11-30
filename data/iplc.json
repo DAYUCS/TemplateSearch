@@ -1,0 +1,42 @@
+[
+    {
+      "transactionSummary": "Initiate import LC for Abu Dhabi energy company with USD 30,000",
+      "unitCode": "HED0003",
+      "moduleName": "IPLC",
+      "referenceNumber": "IPLC0003",
+      "eventNumber": 3,
+      "customerId": "CUST-00003"
+    },
+    {
+      "transactionSummary": "Initiate import LC for Qatari telecommunications company with USD 40,000",
+      "unitCode": "HED0004",
+      "moduleName": "IPLC",
+      "referenceNumber": "IPLC0004",
+      "eventNumber": 4,
+      "customerId": "CUST-00004"
+    },
+    {
+      "transactionSummary": "Initiate import LC for Oman manufacturing company with USD 50,000",
+      "unitCode": "HED0005",
+      "moduleName": "IPLC",
+      "referenceNumber": "IPLC0005",
+      "eventNumber": 5,
+      "customerId": "CUST-00005"
+    },
+    {
+      "transactionSummary": "Initiate import LC for Kuwait logistics company with USD 60,000",
+      "unitCode": "HED0006",
+      "moduleName": "IPLC",
+      "referenceNumber": "IPLC0006",
+      "eventNumber": 6,
+      "customerId": "CUST-00006"
+    },
+    {
+      "transactionSummary": "Initiate import LC for Bahrain construction company with USD 70,000",
+      "unitCode": "HED0007",
+      "moduleName": "IPLC",
+      "referenceNumber": "IPLC0007",
+      "eventNumber": 7,
+      "customerId": "CUST-00007"
+    }
+  ]
