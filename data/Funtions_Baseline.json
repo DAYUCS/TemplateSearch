@@ -1,0 +1,699 @@
+[
+  {
+    "Module Name": "Import Letter of Credit",
+    "Module ID": "IPLC",
+    "Module Description": "Import Letter of Credit (LC) is a financial instrument issued by a bank on behalf of an importer, guaranteeing payment to the exporter once the required documents are presented and all conditions stated in the LC are met. It acts as a payment assurance for the exporter, ensuring that they will be paid for the goods or services provided to the importer. The bank that issues the LC takes responsibility for the payment, providing confidence to both the importer and exporter in the transaction.",
+    "Functions": 
+    [
+      {
+        "Function Name": "Register Letter of Credit",
+        "Function ID": "F05030702010",
+        "Description": "In this function, the incoming import LC is recorded and documented in the trade finance system of the bank. It involves capturing key information such as LC number, issuing bank details, applicant and beneficiary information, LC amount, and terms and conditions.",
+        "KeyFields": 
+        [
+          {
+            "Key Field": "EXPIRY_PLC",
+            "Filed Value(enumeration)": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
+            "Description": "This refers to the place where the LC expires."
+          },
+          {
+            "Key Field": "FORM_OF_LC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
+            "Description": "This indicates the type of LC."
+          },
+          {
+            "Key Field": "EXPIRY_DT",
+            "Field Type": "DATE",
+            "Description": "This refers to the date on which the LC expires."
+          },
+          {
+            "Key Field": "LC_CCY",
+            "Field Type": "CCY",
+            "Filed Value(enumeration)": "ISO4217",
+            "Description": "Use the fields provided to specify the currency of the LC."
+          },
+          {
+            "Key Field": "LC_AMT",
+            "Field Type": "AMOUNT",
+            "Description": "Use the fields provided to specify the amount of the LC."
+          },
+          {
+            "Key Field": "APPLICANT",
+            "Field Type": "CUSTOMER",
+            "Description": "This refers to the Id of the Applicant."
+          },
+          {
+            "Key Field": "ADVISE_BANK",
+            "Field Type": "BANK",
+            "Description": "This refers to the Id of the Advising Bank."
+          },
+          {
+            "Key Field": "AVAL_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BY PAYMENT, BY ACCEPTANCE, \r\nBY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
+            "Description": "This indicates the method by which the LC is available."
+          }
+        ]
+      },
+      {
+        "Function Name": "Issue Letter of Credit",
+        "Function ID": "F05030702015",
+        "Description": "This function involves the issuance of the import LC by the bank on behalf of the importer. The bank prepares the LC document, including the terms and conditions, and sends it to the beneficiary (exporter) or their bank.",
+        "KeyFields":
+        [
+          {
+            "Key Field": "FORM_OF_LC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
+            "Description": "Form of Documentary Credit"
+          },
+          {
+            "Key Field": "EXPIRY_PLC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
+            "Description": "Expiry Place"
+          },
+          {
+            "Key Field": "APLB_RULE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "EUCP LATEST VERSION,EUCPURR LATEST VERSION,OTHER,UCP LATEST VERSION,UCPURR LATEST VERSION",
+            "Description": "Applicable Rules"
+          },
+          {
+            "Key Field": "AVAL_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BY PAYMENT, BY ACCEPTANCE, \r\nBY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
+            "Description": "Available By"
+          },
+          {
+            "Function Name": "Issue Letter of Credit One Step",
+            "Function ID": "F05030702070",
+            "Description": "This function combines the registration and issuance of the import LC in one step. It speeds up the process by eliminating the need for separate registration and issuance steps."
+          },
+          {
+            "Key Field": "FORM_OF_LC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
+            "Description": "Form of Documentary Credit",
+            "__EMPTY_1": "..."
+          },
+          {
+            "Key Field": "EXPIRY_PLC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
+            "Description": "Expiry Place"
+          },
+          {
+            "Key Field": "LC_AMT",
+            "Field Type": "AMOUNT",
+            "Description": "LC Amount"
+          },
+          {
+            "Key Field": "EXPIRY_DT",
+            "Field Type": "DATE",
+            "Description": "Expiry Place"
+          },
+          {
+            "Key Field": "AVAL_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BY PAYMENT, BY ACCEPTANCE, \r\nBY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
+            "Description": "Available By"
+          }
+        ]
+      },
+      {
+        "Function Name": "Issue Amendment One Step",
+        "Function ID": "F05030702093",
+        "Description": "When there are any changes required to the terms and conditions of the import LC, an amendment is issued. The \"Issue Amendment One Step\" function facilitates the swift issuance of the amendment without requiring a separate registration step.",
+        "KeyFields":
+        [
+          {
+            "Key Field": "PURP_OF_MESS",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ACNF,ADVI,ISSU",
+            "Description": "categorize messages or transactions related to import LCs based on their specific purpose, such as acknowledgment, advising, or issuing."
+          },
+          {
+            "Key Field": "AMD_DT",
+            "Field Type": "DATE",
+            "Description": "Amend Date"
+          },
+          {
+            "Key Field": "ISSUE_BK_NM",
+            "Field Type": "BANK",
+            "Description": "Issue Bank Name"
+          },
+          {
+            "Function Name": "Register Document LC",
+            "Function ID": "F05030701981",
+            "Description": "After the goods are shipped, the exporter presents the required documents, such as the commercial invoice, packing list, bill of lading, etc., to their bank for checking and forwarding them to the issuing bank. In this function, the incoming document LC is registered and recorded in the system."
+          },
+          {
+            "Key Field": "PRES_AMT",
+            "Field Type": "AMOUNT",
+            "Description": "Presentation Amount"
+          },
+          {
+            "Key Field": "PRES_DT",
+            "Field Type": "DATE",
+            "Description": "Presentation Date"
+          },
+          {
+            "Key Field": "PRES_BK_REF",
+            "Field Type": "BANK",
+            "Description": "Presentation Bank Reference"
+          }
+        ]
+      },
+      {
+        "Function Name": "Check Document",
+        "Function ID": "F05030701982",
+        "Description": "In the import LC process, the issuing bank checks the presented documents against the stipulated requirements mentioned in the LC. This function involves thoroughly checking the document compliance to ensure they are in accordance with the terms and conditions of the LC.",
+        "KeyFields":
+        [
+          {
+            "Key Field": "MAIL_CONT",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ORIGINALS ONLY,DUPLICATES ONLY,ORIGINALS AND DUPLICATES",
+            "Description": "specify the type of copies (original, duplicate, or mixed) contained in a particular mail or document related to import letters of credit (LCs)."
+          },
+          {
+            "Key Field": "DOC_STAT",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "COMPLICANT,DISCREPANCY FOUND,UNDER SHIPPING GUARANTEE,GOODS RELEASED ALREADY,ACCEPTED BY APPLICANT AS PRESENTED",
+            "Description": "a summary indicator of the current status of a set of documents related to an import LC, providing an overview of any issues or deviations from the LC requirements."
+          },
+          {
+            "Key Field": "TOTAL_AMT",
+            "Field Type": "AMOUNT",
+            "Description": "Total Amount"
+          },
+          {
+            "Key Field": "PRES_DT",
+            "Field Type": "DATE",
+            "Description": "Presentation Date"
+          }
+        ]
+      },
+      {
+        "Function Name": "Register Discrepancies",
+        "Function ID": "F05030701990",
+        "Description": "If any discrepancies are found in the presented documents during the document examination, the issuing bank registers these discrepancies in their system. This step documents the issues that need to be resolved before the payment or acceptance can take place.",
+        "KeyFields":
+          [
+            {
+              "Key Field": "MAIL_CONT",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "ORIGINALS ONLY,DUPLICATES ONLY,ORIGINALS AND DUPLICATES",
+              "Description": "specify the type of copies (original, duplicate, or mixed) contained in a particular mail or document related to import letters of credit (LCs)."
+            },
+            {
+              "Key Field": "PRES_DT",
+              "Field Type": "DATE",
+              "Description": "Presentation Date"
+            },
+            {
+              "Key Field": "PRES_AMT",
+              "Field Type": "AMOUNT",
+              "Description": "Presentation Amount"
+            },
+            {
+              "Key Field": "ADV_APPL_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "YES,NO",
+              "Description": "Advice Applicant Flag"
+            },
+            {
+              "Key Field": "REL_IN_TRUST_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "YES,NO",
+              "Description": "indicate whether or not the identified discrepancy is considered significant enough to warrant further investigation or action. For instance:\r\n\r\n    REL_IN_TRUST_FLG = \"Y\": The discrepancy is considered significant and requires further investigation or action to resolve.\r\n\r\n    REL_IN_TRUST_FLG = \"N\": The discrepancy is considered minor or could be addressed through routine processes, and immediate action may not be necessary.\r\n"
+            }
+          ]
+      },
+      {
+        "Function Name": "Discrepancy Response MT752",
+        "Function ID": "F05030701991",
+        "Description": "The importer/issuing bank communicates with the exporter/beneficiary or their bank to notify them of the discrepancies found in the presented documents. The discrepancy response function involves the exchange of messages and negotiation to resolve the discrepancies and reach an agreement.",
+        "KeyFields":
+          [
+            {
+              "Key Field": "APPL_RESP_DISC",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "DISCREPANCIES ACCEPTED,DISCREPANCIES REJECTED HOLD DOCS,DISCREPANCIES REJECTED RTURN DOCS,DISCREPANCIES ACCEPTED PROVIDED",
+              "Description": "document the applicant's response or action regarding identified discrepancies in an import letter of credit (LC). The values suggest that the applicant can take various actions in response to discrepancies:\r\n\r\n    DISCREPANCIES ACCEPTED: This indicates that the applicant has accepted the identified discrepancies and is willing to proceed with the LC despite the deviations from the original terms.\r\n\r\n    DISCREPANCIES REJECTED HOLD DOCS: This suggests that the applicant has rejected the discrepancies and is requesting that the presented documents be held pending further communication or action.\r\n\r\n    DISCREPANCIES REJECTED RTURN DOCS: This implies that the applicant has rejected the discrepancies and is requesting that the presented documents be returned to the issuing bank or beneficiary.\r\n\r\n    DISCREPANCIES ACCEPTED PROVIDED: This indicates that the applicant has accepted the discrepancies but has provided additional information or documentation to mitigate or address the identified issues.\r\n\r\nIn summary, the APPL_RESP_DISC field serves as a record of the applicant's response to discrepancies in an import LC, capturing their decision on whether to accept or reject the discrepancies and specifying any actions or explanations associated with their response."
+            },
+            {
+              "Key Field": "MAIL_CONT",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "ORIGINALS ONLY,DUPLICATES ONLY,ORIGINALS AND DUPLICATES",
+              "Description": "specify the type of copies (original, duplicate, or mixed) contained in a particular mail or document related to import letters of credit (LCs)."
+            },
+            {
+              "Function Name": "Pay/Accept",
+              "Function ID": "F05030703386",
+              "Description": "Once the documents are found to be compliant or the discrepancies are resolved to the satisfaction of the importer, the issuing bank makes the payment to the exporter (sight payment) or accepts the draft drawn on them by the exporter (acceptance). This function signifies the completion of the import LC transaction and the fulfillment of the payment obligations."
+            },
+            {
+              "Key Field": "CLS_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "LEAVE THE RECORD OPEN,CLOSE THE RECORD"
+            },
+            {
+              "Key Field": "STL_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "BY CURRENT ACCOUNT,BY REFINANCE"
+            },
+            {
+              "Key Field": "PAYMENT_MTHD_VALUE",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "BANK ACCOUNT,LC REFINANCING"
+            },
+            {
+              "Key Field": "STL_AMT",
+              "Field Type": "AMOUNT"
+            },
+            {
+              "Key Field": "ACPT_DT",
+              "Field Type": "DATE"
+            },
+            {
+              "Key Field": "ACPT_MSG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "MT752,MAIL,NONE"
+            }
+          ]
+      },
+      {
+        "Function Name": "Payment at Maturity",
+        "Function ID": "F05030701994",
+        "Description": "This step refers to the payment made by the issuing bank to the beneficiary at the maturity date specified in the LC. If the LC requires payment at a future date (e.g., through a usance draft), the issuing bank settles the payment obligation accordingly upon maturity.",
+        "KeyFields":
+          [
+            {
+              "Key Field": "CLS_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "LEAVE THE RECORD OPEN,CLOSE THE RECORD",
+              "Description": "indicate whether or not an import letter of credit (LC) record should remain open or be closed. The provided values suggest that there are two main options:\r\n\r\n    LEAVE THE RECORD OPEN: This indicates that the LC record should remain open and active, possibly because the LC is still valid or there are pending transactions or inquiries related to it.\r\n\r\n    CLOSE THE RECORD: This suggests that the LC record should be closed and archived, implying that the LC has expired or been fully settled, and there are no further actions or pending issues related to it.\r\n"
+            },
+            {
+              "Key Field": "STL_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "BY CURRENT ACCOUNT,BY REFINANCE",
+              "Description": "represents how the settlement of a trade finance transaction will be carried out. In the context of import letters of credit (LCs), the provided values \"BY CURRENT ACCOUNT\" and \"BY REFINANCE\" suggest two distinct methods for settling the underlying payment obligation:\r\n\r\n    BY CURRENT ACCOUNT: This indicates that the settlement will be made using the applicant's current account, which refers to a regular bank account maintained by the importer or buyer. The funds for the settlement will be drawn directly from this account.\r\n\r\n    BY REFINANCE: This suggests that the settlement will be made through refinancing, which involves obtaining a new loan or financing arrangement to cover the payment obligation. The refinancing may involve the applicant obtaining a loan from their bank or other financial institution, or it could involve arranging for a third-party intermediary to provide the financing.\r\n"
+            },
+            {
+              "Key Field": "SEPARATE_CHG_FLG",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "YES,NO",
+              "Description": "a flag indicating whether or not separate charges related to an import letter of credit (LC) should be handled independently. Here's a possible interpretation:\r\n\r\n    SEPARATE_CHG_FLG = \"YES\": This indicates that separate charges, such as fees or commissions associated with the LC, should be processed and treated separately from the main LC transaction. This may involve maintaining separate records or utilizing distinct processing mechanisms for these charges.\r\n\r\n    SEPARATE_CHG_FLG = \"NO\": This suggests that separate charges should be handled together with the main LC transaction. This implies that these charges would be grouped together, processed as part of the overall LC settlement, or reflected in a single consolidated statement or record.\r\n"
+            },
+            {
+              "Key Field": "PAYMENT_MTHD_VALUE",
+              "Field Type": "SELECT",
+              "Filed Value(enumeration)": "BANK ACCOUNT,LC REGINANCING",
+              "Description": "Payment mthod value"
+            },
+            {
+              "Key Field": "STL_AMT",
+              "Field Type": "AMOUNT",
+              "Description": "settlement amount"
+            }
+          ]
+      }
+    ]
+  },
+  {
+    "Module Name": "Export Letter of Credit",
+    "Module ID": "EPLC",
+    "Module Description": "Export Letter of Credit (LC) is a financial instrument initiated by the buyer's bank, guaranteeing payment to the seller once the required documents are presented and all conditions stated in the LC are fulfilled. It provides assurance to the seller that they will receive payment for the goods or services exported. The issuing bank assumes the responsibility to make the payment, giving confidence to both the seller and the buyer in the transaction. The export LC helps mitigate the risks involved in international trade and facilitates smooth cross-border transactions.",
+    "Functions":
+    [
+      {
+        "Function Name": "Register LC",
+        "Function ID": "F05030701976",
+        "Description": " In the export LC business flow, the first step is to register the LC request received from the exporter. The bank captures and records essential information such as LC number, applicant details, beneficiary details, LC amount, and terms and conditions specified by the exporter.",
+        "Key Fields": [
+          {
+            "Key Field": "LC_NO",
+            "Field Type": "NUMBER"
+          },
+          {
+            "Key Field": "MESG_TYPE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "MT700,MT710,MT720"
+          },
+          {
+            "Key Field": "EXPIRY_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "EXPIRY_PLC_NARR",
+            "Field Type": "PLACE"
+          },
+          {
+            "Key Field": "CONF_INSTR",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "CONFIRM,MAY ADD,WITHOUT"
+          },
+          {
+            "Key Field": "FORM_OF_LC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "IRREVOCABLE,IRREVOCABLE TRANSFERABLE"
+          },
+          {
+            "Key Field": "ISSUE_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "APLB_RULE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "EUCP LATEST VERSION,EUCPURR LATEST VERSION,Other,UCP LATEST VERSION,UCPURR LATEST VERSION"
+          },
+          {
+            "Key Field": "FORM_OF_LC_40B",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ADDING OUR CONFIRMATION,WITHOUT OUR CONFIRMATION"
+          },
+          {
+            "Key Field": "LC_AMT",
+            "Field Type": "AMOUNT"
+          },
+          {
+            "Key Field": "BENE_ID",
+            "Field Type": "BANK"
+          }
+        ]
+      },
+      {
+        "Function Name": "Advise LC",
+        "Function ID": "F05030701977",
+        "Description": "Once the LC request is registered, the issuing bank sends the LC to the advising bank located in the beneficiary's country. This function involves transmitting the LC details and instructions to the advising bank, which acts as a intermediary to inform the beneficiary about the LC's issuance.",
+        "Key Fields": [
+          {
+            "Key Field": "EXPIRY_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "ADV_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "EXPIRY_PLC_NARR",
+            "Field Type": "PLACE"
+          },
+          {
+            "Key Field": "APLB_RULE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "EUCP LATEST VERSION,EUCPURR LATEST VERSION,Other,UCP LATEST VERSION,UCPURR LATEST VERSION"
+          },
+          {
+            "Key Field": "CONF_INSTR",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "CONFIRM,MAY ADD,WITHOUT"
+          }
+        ]
+      },
+      {
+        "Function Name": "Advise LC One Step",
+        "Function ID": "F05030703109",
+        "Description": "Some banks offer a streamlined process where the registration and advising of the LC are combined into a single step, eliminating the need for separate registration and advising processes.",
+        "Key Fields": [
+          {
+            "Key Field": "LC_NO",
+            "Field Type": "NUMBER"
+          },
+          {
+            "Key Field": "MESG_TYPE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "MT700,MT710,MT720,MAIL"
+          },
+          {
+            "Key Field": "EXPIRY_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "EXPIRY_PLC_NARR",
+            "Field Type": "PLACE"
+          },
+          {
+            "Key Field": "CONF_INSTR",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "CONFIRM,MAY ADD,WITHOUT"
+          },
+          {
+            "Key Field": "ISSUE_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "APLB_RULE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "EUCP LATEST VERSION,EUCPURR LATEST VERSION,Other,UCP LATEST VERSION,UCPURR LATEST VERSION"
+          },
+          {
+            "Key Field": "OUR_ENG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ADVICE,CONFIRMATION,SILENT CONFIRMATION"
+          },
+          {
+            "Key Field": "FORM_OF_LC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "IRREVOCABLE,IRREVOCABLE TRANSFERABLE"
+          },
+          {
+            "Key Field": "LC_AMT",
+            "Field Type": "AMOUNT"
+          },
+          {
+            "Key Field": "BENE_ID",
+            "Field Type": "BANK"
+          },
+          {
+            "Key Field": "OUR_ROLE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ADVISING BANK,ADVISE THROUGH BANK"
+          },
+          {
+            "Key Field": "ADV_LC_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "NONE,MAIL TO BENEFICIARY,E-MAIL TO BENEFICIARY,FAX TO BENEFICIARY,SWIFT TO BENEFICIARY'S BANK,MAIL TO BENEFICIARY'S BANK"
+          },
+          {
+            "Key Field": "AVAL_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BY PAYMENT,BY ACCEPTANCE,BY NEGOTIATION,BY DEF PAYMENT,BY MIXED PYMT"
+          },
+          {
+            "Key Field": "PAY_AT",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "AT OUR COUNTERS,AT ISSUING BANK,AT FIRST ADVISING BANK"
+          },
+          {
+            "Key Field": "ACPT_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "OUR,OTHER"
+          }
+        ]
+      },
+      {
+        "Function Name": "Advise Amendment One Step",
+        "Function ID": "F05030703058",
+        "Description": " If any amendments or changes are required in the LC terms and conditions, the issuing bank can issue an amendment to the advising bank and the beneficiary in a single step, eliminating the need for separate registration and advising processes for amendments.",
+        "Key Fields": [
+          {
+            "Key Field": "AMD_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "OUR_ENG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ADVICE,CONFIRMATION,SILENT CONFIRMATION"
+          },
+          {
+            "Key Field": "PURP_OF_MESS",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "ACNF,ADVI,ISSU"
+          },
+          {
+            "Key Field": "ASSET_ACNO",
+            "Field Type": "ACCOUNT"
+          },
+          {
+            "Key Field": "LIAB_ACNO",
+            "Field Type": "ACCOUNT"
+          }
+        ]
+      },
+      {
+        "Function Name": "Register Documents Advised by us",
+        "Function ID": "F05030702064",
+        "Description": "When the beneficiary has shipped the goods and presented the required shipping and financial documents to their bank, the advising bank registers the incoming document LC to record the details of the received documents and associate them with the LC.",
+        "Key Fields": [
+          {
+            "Key Field": "PRES_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "DOC_PRES_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BENEFICIARY,BENNEFICIARY'S BANK"
+          },
+          {
+            "Key Field": "PRES_AMT",
+            "Field Type": "AMOUNT"
+          }
+        ]
+      },
+      {
+        "Function Name": "Check Documents",
+        "Function ID": "F05030702078",
+        "Description": "The advising bank thoroughly examines the presented documents to ensure they comply with the requirements mentioned in the LC. This involves verifying the accuracy and completeness of the documents, including commercial invoice, bill of lading, packing list, and any other specified documents.",
+        "Key Fields": [
+          {
+            "Key Field": "PRES_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "DOC_PRES_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "BENEFICIARY,BENNEFICIARY'S BANK"
+          },
+          {
+            "Key Field": "DOC_STAT",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "COMPLIANT,DISCREPANCY,GOODS RELEASED ALREADY"
+          }
+        ]
+      },
+      {
+        "Function Name": "Send Documents",
+        "Function ID": "F05030702094",
+        "Description": "After verifying the compliance of the presented documents, the advising bank sends the documents to the issuing bank. This function involves securely transmitting the documents to ensure that they reach the issuing bank without any delays or loss.",
+        "Key Fields": [
+          {
+            "Key Field": "RCV_DOC_BK_NM",
+            "Field Type": "BANK"
+          },
+          {
+            "Key Field": "REMIT_PROCEEDS_BY",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "CREDIT OUR NOSTRO ACCOUNT,DEBIT THEIR VOSTRO ACCOUNT,OTHER"
+          }
+        ]
+      },
+      {
+        "Function Name": "Pay/Accept",
+        "Function ID": "F05030702144",
+        "Description": "Upon receiving the compliant documents, the issuing bank makes the payment to the beneficiary (sight payment) or accepts the beneficiary's draft, ensuring that the payment obligations are fulfilled within the agreed-upon timeline.",
+        "Key Fields": [
+          {
+            "Key Field": "TTL_STL_AMT_RCV",
+            "Field Type": "AMOUNT"
+          },
+          {
+            "Key Field": "STL_AMT",
+            "Field Type": "AMOUNT"
+          },
+          {
+            "Key Field": "VALUE_DT_DR",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "MATURITY_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "STL_INSTR_FLG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "DEDUCT CHARGES FROM PROCEEDS,TAKE CHARGES SEPARATELY"
+          },
+          {
+            "Key Field": "PMT_REQUEST_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "VALUE_DT_CR",
+            "Field Type": "DATE"
+          }
+        ]
+      },
+      {
+        "Function Name": "Discount",
+        "Function ID": "F05030702146",
+        "Description": "If the exporter needs immediate liquidity, they can request the bank to discount the export LC. The bank provides early payment to the exporter with a certain discount, allowing them to access funds before the maturity date of the LC.",
+        "Key Fields": [
+          {
+            "Key Field": "CFNC_N_AMT_LCCCY",
+            "Field Type": "AMOUNT"
+          },
+          {
+            "Key Field": "CFNC_D_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "CFNC_D_DUE_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "CFNC_C_GRACE_FLG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "CALENDAR DAYS,WORKING DAYS"
+          },
+          {
+            "Key Field": "INC_EXC",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "INCLUSIVE,EXCLUSIVE"
+          },
+          {
+            "Key Field": "CFNC_C_INT_MODE",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "STRAIGHT INTEREST,DISCOUNT TO YIELD"
+          },
+          {
+            "Key Field": "CFNC_I_BASIC_DAYS",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "360,365,366"
+          },
+          {
+            "Key Field": "CFNC_N_LIBOR_RT",
+            "Field Type": "RATE"
+          }
+        ]
+      },
+      {
+        "Function Name": "Payment at Maturity",
+        "Function ID": "F05030702156",
+        "Description": "This step refers to the payment made by the issuing bank to the advising bank or the confirming bank upon maturity of the LC. The exporter receives the payment from the advising bank or confirming bank as per the terms and conditions of the LC.",
+        "Key Fields": [
+          {
+            "Key Field": "CLS_DRWG_FLG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "YES,NO"
+          },
+          {
+            "Key Field": "VALUE_DT_DR",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "MATURITY_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "STL_INSTR_FLG",
+            "Field Type": "SELECT",
+            "Filed Value(enumeration)": "DEDUCT CHARGES FROM PROCEEDS,TAKE CHARGES SEPARATELY"
+          },
+          {
+            "Key Field": "PMT_REQUEST_DT",
+            "Field Type": "DATE"
+          },
+          {
+            "Key Field": "VALUE_DT_CR",
+            "Field Type": "DATE"
+          }
+        ]
+      }
+    ]
+  }
+]
