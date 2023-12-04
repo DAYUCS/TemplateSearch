@@ -1,7 +1,18 @@
+import os
 from litellm import completion
+from dotenv import load_dotenv
+from pathlib import Path
+
+# load parameters from .env
+dotenv_path = Path('.env')
+load_dotenv(dotenv_path=dotenv_path)
+
+# Get OPENAI Setting
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI__MODEL = os.getenv('OPENAI_MODEL')
 
 response = completion(
-            model="ollama/openchat", 
+            model=OPENAI__MODEL, 
             messages = [
                 {"role": "system", "content": "You are a helpful system assistant. Here is the system information: "},
                 {"role": "system", "content": '''
@@ -81,8 +92,7 @@ response = completion(
                 },
                 {"role": "user", "content": "Chinasystems Ltd. Corp. applied for a letter of credit with USD 100000." },
                 {"role": "assistant", "content": "Which function the user to perform? Which key fields did the user gave? Leave the values blank for the fields which the user did not gave. Answer in JSON format only." }
-            ], 
-            api_base="http://localhost:11434"
+            ]
 )
 
-print(response)
+print(response.choices[0])
