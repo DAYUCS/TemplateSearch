@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # this project
-myapp.log
+*.log
+litellm_uuid.txt
