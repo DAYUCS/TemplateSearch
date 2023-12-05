@@ -1,5 +1,6 @@
 import os
 from litellm import completion
+from openai import APIConnectionError, OpenAIError, RateLimitError
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -11,9 +12,10 @@ load_dotenv(dotenv_path=dotenv_path)
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 OPENAI__MODEL = os.getenv('OPENAI_MODEL')
 
-response = completion(
-            model=OPENAI__MODEL, 
-            messages = [
+try:
+    response = completion(
+        model=OPENAI__MODEL, 
+        messages = [
                 {"role": "system", "content": "You are a helpful system assistant. Here is the system information: "},
                 {"role": "system", "content": '''
                 - Module Name: Import Letter of Credit
@@ -90,9 +92,23 @@ response = completion(
                                     Description: Available By
                  '''
                 },
-                {"role": "user", "content": "Chinasystems Ltd. Corp. applied for a letter of credit with USD 100000." },
+                {"role": "user", "content": "Chinasystems Ltd. Corp. applied for a non-transferable letter of credit worth US$100,000" },
                 {"role": "assistant", "content": "Which function the user to perform? Which key fields did the user gave? Leave the values blank for the fields which the user did not gave. Answer in JSON format only." }
-            ]
-)
-
-print(response.choices[0])
+            ],
+            temperature=0,
+            max_tokens=512
+    )
+except OpenAIError as e:
+    #Handle API error here, e.g. retry or log
+    print(f"OpenAI API returned an API Error: {e}")
+    pass
+except APIConnectionError as e:
+    #Handle connection error here
+    print(f"Failed to connect to OpenAI API: {e}")
+    pass
+except RateLimitError as e:
+    #Handle rate limit error (we recommend using exponential backoff)
+    print(f"OpenAI API request exceeded rate limit: {e}")
+    pass
+else:
+    print(response.choices[0].message)
