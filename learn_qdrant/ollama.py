@@ -98,7 +98,7 @@ try:
             ],
             temperature=0,
             max_tokens=512,
-            api_base="http://10.39.101.14:11434"
+            api_base="http://localhost:11434"
     )
 except OpenAIError as e:
     #Handle API error here, e.g. retry or log
