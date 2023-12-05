@@ -14,7 +14,8 @@ OPENAI__MODEL = os.getenv('OPENAI_MODEL')
 
 try:
     response = completion(
-        model=OPENAI__MODEL, 
+        #model=OPENAI__MODEL,
+        model="ollama/openchat",
         messages = [
                 {"role": "system", "content": "You are a helpful system assistant. Here is the system information: "},
                 {"role": "system", "content": '''
@@ -96,7 +97,8 @@ try:
                 {"role": "assistant", "content": "Which function the user to perform? Which key fields did the user gave? Leave the values blank for the fields which the user did not gave. Answer in JSON format only." }
             ],
             temperature=0,
-            max_tokens=512
+            max_tokens=512,
+            api_base="http://10.39.101.14:11434"
     )
 except OpenAIError as e:
     #Handle API error here, e.g. retry or log
