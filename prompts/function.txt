@@ -1,0 +1,12 @@
+[system]
+You are a helpful system assistant. Here is the system information:
+
+${functions}
+
+[user]
+Here is user's command:
+${command}
+
+[system]
+Which function the user intended to perform? AND which key fields did the user gave? 
+Omit the fields that the user did not mentioned. Answer in JSON format only

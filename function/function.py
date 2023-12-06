@@ -1,9 +1,10 @@
 import logging
-import json
+import yaml
 from pydantic import BaseModel
 from typing import List
 from fastapi import APIRouter
 from qdrant import qdrant
+from llm import llm
 
 class Field(BaseModel):
     fieldName: str
@@ -45,8 +46,24 @@ class Function(BaseModel):
 router = APIRouter(prefix="/function",
     tags=["function"])
 
-# create function collection
+# create function collection on vector database(qdrant)
 @router.put("/create")
 async def create_function_collection():
     logging.info("Creating collection function")
     return qdrant.create_collection('function')
+
+# find out which function the user intended to perform
+@router.get("/find")
+async def find_function(userCommand: str):
+    logging.info("Finding out which function the user intended to perform")
+
+    # Step 1: search functions from the collection on vector database
+    functions = qdrant.search_functions(userCommand)
+
+    # Step 2: let llm identify function and key fields
+    functions_yaml = yaml.dump(functions)
+    llm.identify_function(userCommand, functions_yaml)
+    
+    # Step 3: identify CUBK ID
+
+    return {"message": "ok"}

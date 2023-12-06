@@ -85,18 +85,20 @@
             "Field Type": "SELECT",
             "Filed Value(enumeration)": "BY PAYMENT, BY ACCEPTANCE, \r\nBY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
             "Description": "Available By"
-          },
-          {
-            "Function Name": "Issue Letter of Credit One Step",
-            "Function ID": "F05030702070",
-            "Description": "This function combines the registration and issuance of the import LC in one step. It speeds up the process by eliminating the need for separate registration and issuance steps."
-          },
+          }
+        ]
+      },
+      {
+        "Function Name": "Issue Letter of Credit One Step",
+        "Function ID": "F05030702070",
+        "Description": "This function combines the registration and issuance of the import LC in one step. It speeds up the process by eliminating the need for separate registration and issuance steps.",
+        "KeyFields":
+        [
           {
             "Key Field": "FORM_OF_LC",
             "Field Type": "SELECT",
             "Filed Value(enumeration)": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
-            "Description": "Form of Documentary Credit",
-            "__EMPTY_1": "..."
+            "Description": "Form of Documentary Credit"
           },
           {
             "Key Field": "EXPIRY_PLC",

@@ -28,13 +28,13 @@ class Transaction(BaseModel):
 router = APIRouter(prefix="/template",
     tags=["template"])
 
-# create template collection
+# create template collection on vector database(qdrant)
 @router.put("/create")
 async def create_template_collection():
     logging.info("Creating collection template")
     return qdrant.create_collection('template')
 
-# upload templates
+# upload templates to the collection
 @router.post("/upload")
 async def upload_templates(transactions: List[Transaction]):
     logging.info("Uploading templates")
@@ -42,7 +42,7 @@ async def upload_templates(transactions: List[Transaction]):
     json_object = json.loads(json_data)
     return qdrant.upload_templates(json_object)
 
-# search templates
+# search templates from the collection
 @router.get("/search")
 async def search_templates(userCommand: str, unitCode: str, moduleName: str, customerId: str, limit: int = 3):
     logging.info("Searching templates")

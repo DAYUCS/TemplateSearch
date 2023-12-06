@@ -11,6 +11,7 @@ from pathlib import Path
 from template import template
 from qdrant import qdrant
 from function import function
+from llm import llm
 
 # load parameters from .env
 dotenv_path = Path('.env')
@@ -40,6 +41,11 @@ ST_MODEL = os.getenv('ST_MODEL')
 ST_DEVICE = os.getenv('ST_DEVICE')
 logging.info("Creating embedder")
 qdrant.encoder = qdrant.create_embedder(ST_MODEL, ST_DEVICE)
+
+# Get OpenAI Key and Model
+llm.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+llm.OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+llm.PROMPTS_PATH = os.getenv("PROMPTS_PATH")
 
 app = FastAPI()
 
