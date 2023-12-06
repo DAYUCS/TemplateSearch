@@ -10,12 +10,12 @@ load_dotenv(dotenv_path=dotenv_path)
 
 # Get OPENAI Setting
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-OPENAI__MODEL = os.getenv('OPENAI_MODEL')
+OPENAI_MODEL = os.getenv('OPENAI_MODEL')
 
 try:
     response = completion(
-        #model=OPENAI__MODEL,
-        model="ollama/openchat",
+        model=OPENAI_MODEL,
+        #model="ollama/openchat",
         messages = [
                 {"role": "system", "content": "You are a helpful system assistant. Here is the system information: "},
                 {"role": "system", "content": '''
@@ -97,8 +97,8 @@ try:
                 {"role": "assistant", "content": "Which function the user to perform? Which key fields did the user gave? Leave the values blank for the fields which the user did not gave. Answer in JSON format only." }
             ],
             temperature=0,
-            max_tokens=512,
-            api_base="http://localhost:11434"
+            max_tokens=512
+            #api_base="http://localhost:11434"
     )
 except OpenAIError as e:
     #Handle API error here, e.g. retry or log
