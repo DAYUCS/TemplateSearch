@@ -17,8 +17,8 @@ handlers:
         class: logging.FileHandler
         level: INFO
         formatter: simple
-        filename: templatesearch.log
-        mode: append
+        filename: ./logs/templatesearch.log
+        mode: a
 
 loggers:
     development:
