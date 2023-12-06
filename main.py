@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 from template import template
 from qdrant import qdrant
+from function import function
 
 # load parameters from .env
 dotenv_path = Path('.env')
@@ -43,6 +44,7 @@ qdrant.encoder = qdrant.create_embedder(ST_MODEL, ST_DEVICE)
 app = FastAPI()
 
 app.include_router(template.router)
+app.include_router(function.router)
 
 #logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
