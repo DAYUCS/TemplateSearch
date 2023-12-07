@@ -5,7 +5,7 @@
  "
  },
  {"role": "user", "content": ${command}},
- {"role": "system", "content": "Which function the user intended to perform? Give us your choice including 
+ {"role": "system", "content": "Which function should the user perform? Give us your choice including 
  functionName, functionId, functionModule, and the functionFields which values have been given by the user. 
  Answer in JSON format only"}
 ]
