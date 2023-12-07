@@ -62,8 +62,8 @@ async def find_function(userCommand: str):
 
     # Step 2: let llm identify function and key fields
     functions_yaml = yaml.dump(functions)
-    llm.identify_function(userCommand, functions_yaml)
+    response = llm.identify_function(userCommand, functions_yaml)
     
     # Step 3: identify CUBK ID
 
-    return {"message": "ok"}
+    return response

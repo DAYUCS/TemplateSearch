@@ -1,12 +1,11 @@
-[system]
-You are a helpful system assistant. Here is the system information:
-
-${functions}
-
-[user]
-Here is user's command:
-${command}
-
-[system]
-Which function the user intended to perform? AND which key fields did the user gave? 
-Omit the fields that the user did not mentioned. Answer in JSON format only
+[
+ {"role": "system", "content": "You are a helpful system assistant. Here is the system information: "},
+ {"role": "system", "content": "
+ ${functions}
+ "
+ },
+ {"role": "user", "content": ${command}},
+ {"role": "system", "content": "Which function the user intended to perform? Give us your choice including 
+ functionName, functionId, functionModule, and the functionFields which values have been given by the user. 
+ Answer in JSON format only"}
+]
