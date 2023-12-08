@@ -1,7 +1,8 @@
 import logging
 import yaml
+import json
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from fastapi import APIRouter
 from qdrant import qdrant
 from llm import llm
@@ -9,7 +10,7 @@ from llm import llm
 class Field(BaseModel):
     fieldName: str
     fieldType: str
-    fieldValue: str
+    fieldValue: Optional[str] = None
     fieldDescription: str
 
     class Config:
@@ -51,6 +52,14 @@ router = APIRouter(prefix="/function",
 async def create_function_collection():
     logging.info("Creating collection function")
     return qdrant.create_collection('function')
+
+# upload functions to the collection
+@router.post("/upload")
+async def upload_functions(functions: List[Function]):
+    logging.info("Uploading functions")
+    json_data = json.dumps(functions, default=lambda x: x.__dict__)
+    json_object = json.loads(json_data)
+    return qdrant.upload_functions(json_object)
 
 # find out which function the user intended to perform
 @router.get("/find")

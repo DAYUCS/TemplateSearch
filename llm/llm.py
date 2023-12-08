@@ -11,9 +11,9 @@ def identify_function(userCommand, functionList):
     prompt_template = PROMPTS_PATH + "/function.txt"
     template = Template(filename=prompt_template, module_directory='/tmp/mako_modules')
     prompt = template.render(functions=functionList, command=userCommand)
-    logging.info(prompt)
+    logging.debug(prompt)
     prompt_messages = multiline.loads(prompt, multiline=True)
-    logging.info(prompt_messages)
+    logging.debug(prompt_messages)
 
     logging.info("Calling llm API")
     try:

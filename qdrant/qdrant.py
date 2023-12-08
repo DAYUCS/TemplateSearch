@@ -76,7 +76,28 @@ def search_templates(user_Command, unit_Code, module_Name, customer_Id, limitRec
     except UnexpectedResponse:
         logging.error(UnexpectedResponse.content)
         return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
-    
+
+def upload_functions(functions):
+    logging.info("Uploading functions...")
+    try:
+        qclient.upload_records(
+            collection_name="function",
+            records=[
+                models.Record(
+                    id=str(uuid.uuid4()),
+                    vector=encoder.encode(func["functionDescription"]).tolist(), 
+                    payload=func
+                )
+                for idx, func in enumerate(functions)
+            ],
+        )
+    except UnexpectedResponse:
+        logging.error(UnexpectedResponse.content)
+        return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}
+    else:
+        return {'code': 200, 'reason': 'OK'}
+
+
 def search_functions(user_Command):
     logging.info("Searching functions...")
     functions = [
@@ -84,11 +105,12 @@ def search_functions(user_Command):
         "functionName": "Register Letter of Credit",
         "functionId": "F05030702010",
         "functionModule": "IPLC",
-        "functionDescription": "In this function, the incoming import LC is recorded and documented in the trade finance system of the bank. It involves capturing key information such as LC number, issuing bank details, applicant and beneficiary information, LC amount, and terms and conditions.",
+        "functionDescription": "Assisting importers with the application and registration process for opening an LC. In this function, the incoming import LC is recorded and documented in the trade finance system of the bank. It involves capturing key information such as LC number, issuing bank details, applicant and beneficiary information, LC amount, and terms and conditions.",
         "functionFields": 
         [
           {
             "fieldName": "EXPIRY_PLC",
+            "fieldType": "SELECT",
             "fieldValue": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
             "fieldDescription": "This refers to the place where the LC expires."
           },
@@ -101,6 +123,7 @@ def search_functions(user_Command):
           {
             "fieldName": "EXPIRY_DT",
             "fieldType": "DATE",
+            "fieldValue": "ISO8601",
             "fieldDescription": "This refers to the date on which the LC expires."
           },
           {
@@ -136,7 +159,7 @@ def search_functions(user_Command):
         "functionName": "Issue Letter of Credit",
         "functionId": "F05030702015",
         "functionModule": "IPLC",
-        "functionDescription": "This function involves the issuance of the import LC by the bank on behalf of the importer. The bank prepares the LC document, including the terms and conditions, and sends it to the beneficiary (exporter) or their bank.",
+        "functionDescription": "Banks issue LCs on behalf of importers to provide a payment guarantee to the exporter, based on an approved LC registration record. This function involves the issuance of the import LC by the bank on behalf of the importer. The bank prepares the LC document, including the terms and conditions, and sends it to the beneficiary (exporter) or their bank.",
         "functionFields":
         [
           {
