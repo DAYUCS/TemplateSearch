@@ -100,93 +100,14 @@ def upload_functions(functions):
 
 def search_functions(user_Command):
     logging.info("Searching functions...")
-    functions = [
-        {
-        "functionName": "Register Letter of Credit",
-        "functionId": "F05030702010",
-        "functionModule": "IPLC",
-        "functionDescription": "Assisting importers with the application and registration process for opening an LC. In this function, the incoming import LC is recorded and documented in the trade finance system of the bank. It involves capturing key information such as LC number, issuing bank details, applicant and beneficiary information, LC amount, and terms and conditions.",
-        "functionFields": 
-        [
-          {
-            "fieldName": "EXPIRY_PLC",
-            "fieldType": "SELECT",
-            "fieldValue": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
-            "fieldDescription": "This refers to the place where the LC expires."
-          },
-          {
-            "fieldName": "FORM_OF_LC",
-            "fieldType": "SELECT",
-            "fieldValue": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
-            "fieldDescription": "This indicates the type of LC."
-          },
-          {
-            "fieldName": "EXPIRY_DT",
-            "fieldType": "DATE",
-            "fieldValue": "ISO8601",
-            "fieldDescription": "This refers to the date on which the LC expires."
-          },
-          {
-            "fieldName": "LC_CCY",
-            "fieldType": "CCY",
-            "fieldValue": "ISO4217",
-            "fieldDescription": "Use the fields provided to specify the currency of the LC."
-          },
-          {
-            "fieldName": "LC_AMT",
-            "fieldType": "AMOUNT",
-            "fieldDescription": "Use the fields provided to specify the amount of the LC."
-          },
-          {
-            "fieldName": "APPLICANT",
-            "fieldType": "CUSTOMER",
-            "fieldDescription": "This refers to the Id of the Applicant."
-          },
-          {
-            "fieldName": "ADVISE_BANK",
-            "fieldType": "BANK",
-            "fieldDescription": "This refers to the Id of the Advising Bank."
-          },
-          {
-            "fieldName": "AVAL_BY",
-            "fieldType": "SELECT",
-            "fieldValue": "BY PAYMENT, BY ACCEPTANCE, BY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
-            "fieldDescription": "This indicates the method by which the LC is available."
-          }
-        ]
-      },
-      {
-        "functionName": "Issue Letter of Credit",
-        "functionId": "F05030702015",
-        "functionModule": "IPLC",
-        "functionDescription": "Banks issue LCs on behalf of importers to provide a payment guarantee to the exporter, based on an approved LC registration record. This function involves the issuance of the import LC by the bank on behalf of the importer. The bank prepares the LC document, including the terms and conditions, and sends it to the beneficiary (exporter) or their bank.",
-        "functionFields":
-        [
-          {
-            "fieldName": "FORM_OF_LC",
-            "fieldType": "SELECT",
-            "fieldValue": "IRREVOCABLE, IRREVOCABLE TRANSFERABLE",
-            "fieldDescription": "Form of Documentary Credit"
-          },
-          {
-            "fieldName": "EXPIRY_PLC",
-            "fieldType": "SELECT",
-            "fieldValue": "BENEFICIARY COUNTRY,AT OUR COUNTERS,ADVISING BANK COUNTRY,OTHER",
-            "fieldDescription": "Expiry Place"
-          },
-          {
-            "fieldName": "APLB_RULE",
-            "fieldType": "SELECT",
-            "fieldValue": "EUCP LATEST VERSION,EUCPURR LATEST VERSION,OTHER,UCP LATEST VERSION,UCPURR LATEST VERSION",
-            "fieldDescription": "Applicable Rules"
-          },
-          {
-            "fieldName": "AVAL_BY",
-            "fieldType": "SELECT",
-            "fieldValue": "BY PAYMENT, BY ACCEPTANCE, BY NEGOTIATION, BY DEF PAYMENT, BY MIXED PYMT",
-            "fieldDescription": "Available By"
-          }
-        ]
-      }
-    ]
-    return functions
+    try:
+        hits = qclient.search(
+            collection_name="function",
+            query_vector=encoder.encode(user_Command).tolist(),
+            limit=2,
+        )
+        functions = [item.payload for item in hits]
+        return functions
+    except UnexpectedResponse:
+        logging.error(UnexpectedResponse.content)
+        return {'code': UnexpectedResponse.status_code, 'reason': UnexpectedResponse.reason_phrase}

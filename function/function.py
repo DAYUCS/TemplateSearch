@@ -68,6 +68,7 @@ async def find_function(userCommand: str):
 
     # Step 1: search functions from the collection on vector database
     functions = qdrant.search_functions(userCommand)
+    print(functions)
 
     # Step 2: let llm identify function and key fields
     functions_yaml = yaml.dump(functions)
