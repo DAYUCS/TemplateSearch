@@ -6,6 +6,7 @@ import yaml
 
 from fastapi import FastAPI, status
 from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from pathlib import Path
 from template import template
@@ -48,6 +49,21 @@ llm.OPENAI_MODEL = os.getenv("OPENAI_MODEL")
 llm.PROMPTS_PATH = os.getenv("PROMPTS_PATH")
 
 app = FastAPI()
+
+origins = [
+    "http://10.39.101.14",
+    "https://10.39.101.14:4200",
+    "http://localhost",
+    "http://localhost:4200",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(template.router)
 app.include_router(function.router)
