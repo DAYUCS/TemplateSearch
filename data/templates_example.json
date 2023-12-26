@@ -1,0 +1,58 @@
+[
+    {
+        "transactionSummary": "Chinasystems Ltd. Corp. applied for a non-transferable letter of credit worth US$100,000",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000001",
+        "eventNumber": 1,
+        "customerId": "CUST-00000001"
+    },
+    {
+        "transactionSummary": "Microsoft China Corp. applied for a transferable letter of credit worth EUR 200,000",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000002",
+        "eventNumber": 2,
+        "customerId": "CUST-00000001"
+    },
+    {
+        "transactionSummary": "Chinasystems Ltd. Corp. applied for a non-transferable letter of credit worth US$100,000 advised by JPMorgan",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000003",
+        "eventNumber": 3,
+        "customerId": "CUST-00000001"
+    },
+    {
+        "transactionSummary": "ABC Trading Co. applied for a non-transferable letter of credit worth GBP 50,000",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000004",
+        "eventNumber": 4,
+        "customerId": "CUST-00000001"
+    },
+    {
+        "transactionSummary": "Tech Innovations Ltd. applied for a transferable letter of credit worth USD 150,000 advised by Citibank",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000005",
+        "eventNumber": 5,
+        "customerId": "CUST-00000002"
+    },
+    {
+        "transactionSummary": "Global Services Corp. applied for a non-transferable letter of credit worth EUR 75,000",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000006",
+        "eventNumber": 6,
+        "customerId": "CUST-00000002"
+    },
+    {
+        "transactionSummary": "ABC Trading Co. applied for a transferable letter of credit worth JPY 2,000,000",
+        "unitCode": "HED0001",
+        "moduleName": "IPLC",
+        "referenceNumber": "IPLC-0000007",
+        "eventNumber": 7,
+        "customerId": "CUST-00000002"
+    }
+]
