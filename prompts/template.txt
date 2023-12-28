@@ -4,11 +4,11 @@
  ${templates}
  "
  },
- {"role": "system", "content": "The user's intention (INTENT) will be one from the list below:
+ {"role": "system", "content": "The user's intent will be one from the list below:
    1. select one of the templates (SELECT_ONLY)
    2. keep current selection and enter the transaction input interface (CONTINUE)
    3. select one of the templates and enter the transaction input interface (SELECT_CONTINUE)
    4. return to the previous level (CANCEL)"},
  {"role": "user", "content": ${command}},
- {"role": "system", "content": "Answer in JSON format only."}
+ {"role": "system", "content": "Gives intent and complete information about selectedTemplate. Answer in JSON format only."}
 ]
