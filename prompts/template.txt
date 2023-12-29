@@ -10,5 +10,5 @@
    3. select one of the templates and enter the transaction input interface (SELECT_CONTINUE)
    4. return to the previous level (CANCEL)"},
  {"role": "user", "content": ${command}},
- {"role": "system", "content": "Gives intent and complete information about selectedTemplate. Answer in JSON format only."}
+ {"role": "system", "content": "Give the user's intent and sequence number of selectedTemplate starting from 0. Answer in JSON format only."}
 ]
