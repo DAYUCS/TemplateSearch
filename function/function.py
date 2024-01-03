@@ -1,8 +1,9 @@
+from datetime import date
 import logging
 import yaml
 import json
 from pydantic import BaseModel
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 from fastapi import APIRouter, Body
 from qdrant import qdrant
 from llm import llm
@@ -10,7 +11,7 @@ from llm import llm
 class Field(BaseModel):
     fieldName: str
     fieldType: str
-    fieldValue: Optional[str] = None
+    fieldValue: Optional[Union[str, int, float, date, None]]
     fieldDescription: str
 
     class Config:
