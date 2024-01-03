@@ -6,7 +6,7 @@
  },
  {"role": "user", "content": ${command}},
  {"role": "system", "content": "Which function should the user perform? Give us your choice including 
- functionName, functionId, functionModule, and the functionFields which values have been given by the user. 
- functionFields should be an array of object constructed by fieldName, fieldType, fieldDescription and fieldValue.
- Answer in JSON format only"}
+ functionName, functionId, functionModule, functionDescription, and the functionFields
+ which values have been given by the user. functionFields should be an array of object constructed by
+ fieldName, fieldType, fieldDescription and fieldValue. Answer in JSON format only"}
 ]
