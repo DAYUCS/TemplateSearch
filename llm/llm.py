@@ -29,7 +29,18 @@ def identify_template(userCommand, templateList):
 
     logging.info("Calling llm API")
     return call_llm(prompt_messages)
-    
+
+def process_function(userCommand, functionData, trxData):
+    logging.info("Generate prompts")
+    prompt_template = PROMPTS_PATH + "/transaction.txt"
+    template = Template(filename=prompt_template, module_directory='/tmp/mako_modules')
+    prompt = template.render(transaction=trxData, function=functionData, command=userCommand)
+    logging.debug(prompt)
+    prompt_messages = multiline.loads(prompt, multiline=True)
+    logging.debug(prompt_messages)
+
+    logging.info("Calling llm API")
+    return call_llm(prompt_messages)    
 def call_llm(prompt_messages):
     try:
         response = completion(

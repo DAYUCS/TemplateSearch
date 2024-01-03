@@ -2,8 +2,8 @@ import logging
 import yaml
 import json
 from pydantic import BaseModel
-from typing import List, Optional
-from fastapi import APIRouter
+from typing import Any, List, Optional
+from fastapi import APIRouter, Body
 from qdrant import qdrant
 from llm import llm
 
@@ -76,4 +76,21 @@ async def find_function(userCommand: str):
     
     # Step 3: identify CUBK ID
 
+    return response
+
+@router.post("/process")
+async def process_function(userCommand: str, functionData: Function, trxData: Any = Body(None)):
+    logging.info("determine user's intent")
+    logging.info(userCommand)
+    logging.info(functionData)
+    logging.info(trxData)
+    json_data = json.dumps(trxData, default=lambda x: x.__dict__)
+    json_object = json.loads(json_data)
+    trx_yaml = yaml.dump(json_object)
+
+    json_data = json.dumps(functionData, default=lambda x: x.__dict__)
+    json_object = json.loads(json_data)
+    function_yaml = yaml.dump(json_object)
+
+    response = llm.process_function(userCommand, function_yaml, trx_yaml)
     return response

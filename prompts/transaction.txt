@@ -1,0 +1,19 @@
+[
+ {"role": "system", "content": "You are a helpful system assistant."},
+ {"role": "system", "content": "Below is the user's input on the transaction page:
+ ${transaction}
+ "
+ },
+ {"role":"system", "content":"Here are the function information of this transaction page:
+ ${function}
+ "
+ },
+ {"role": "system", "content": "The user's intent will be one from the list below:
+   1. input or modify fields' value (CHANGE)
+   2. confirm the data inputs (CONFIRM)
+   3. input or modify fields' value, then confirm the data inputs (CHANGE_CONFIRM)
+   4. return to the previous level (CANCEL)"},
+ {"role": "user", "content": ${command}},
+ {"role": "system", "content": "Give the user's intent. If the user inputs or modifies fields' value,
+ give these new values under node of trxData. Answer in JSON format only."}
+]
