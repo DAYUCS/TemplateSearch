@@ -1,0 +1,86 @@
+{
+    "invoice": {
+        "header": {
+            "logo": "cg",
+            "title": "TAX INVOICE"
+        },
+        "dates": {
+            "issue_date": "20-Mar-2008",
+            "due_date": "16-Oct-2016",
+            "po_number": "35"
+        },
+        "addresses": {
+            "from": {
+                "name": "Timothy Mission",
+                "address": "16424 Timothy Mission",
+                "city": "Markville",
+                "state": "AK",
+                "zip": "58294",
+                "country": "US",
+                "email": "melvin40@example.net",
+                "website": "www.ThompsonandSons.org",
+                "phone": "12345670 0070007"
+            },
+            "to": {
+                "name": "Denise Perez",
+                "address": "16424 Timothy Mission",
+                "city": "Markville",
+                "state": "AK",
+                "zip": "58294",
+                "country": "US",
+                "email": "melvin40@example.net",
+                "tel": "(352)259-4843",
+                "website": "http: //smith.org/"
+            }
+        },
+        "gst": "OG@AAMFC0376K124",
+        "items": [
+            {
+                "description": "Data score fire.",
+                "quantity": 6.0,
+                "price": 57.8
+            },
+            {
+                "description": "Determine half.",
+                "quantity": 2.0,
+                "price": 24.7
+            },
+            {
+                "description": "Model read.",
+                "quantity": 1.0,
+                "price": 86.14
+            },
+            {
+                "description": "Mother consider.",
+                "quantity": 1.0,
+                "price": 81.84
+            },
+            {
+                "description": "Tv focus.",
+                "quantity": 4.0,
+                "price": 40.28
+            }
+        ],
+        "totals": {
+            "sub_total": 725.3,
+            "discount": {
+                "percentage": 1.85,
+                "amount": -13.42
+            },
+            "tax_vat": {
+                "percentage": 3.88,
+                "amount": 28.18
+            },
+            "total_in_words": "seven hundred and thirty-four point three three",
+            "total": 734.33,
+            "currency": "EUR"
+        },
+        "bank_details": {
+            "bank_name": "State Bank of California",
+            "branch_name": "Rat CAMP",
+            "account_number": "11695435",
+            "swift_code": "SBININBB250"
+        },
+        "note": "This order is shipped through blue dart courier"
+    }
+}
