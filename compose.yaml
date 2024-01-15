@@ -1,6 +1,6 @@
 services:
   tasvc:
-    image: biandayu/tasvc:0.0.3
+    image: biandayu/tasvc:0.0.4
     volumes:
       - models:/models
       - type: bind

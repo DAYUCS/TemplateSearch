@@ -34,7 +34,10 @@ RUN adduser \
 # into this layer.
 RUN --mount=type=cache,target=/home/dayu/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
+    python -m pip install --no-cache-dir torch==2.1.2+cpu -f https://download.pytorch.org/whl/torch_stable.html \
+    && python -m pip install transformers tqdm numpy scikit-learn scipy nltk sentencepiece \
+    && python -m pip install --no-deps sentence-transformers \
+    && python -m pip install fastapi litellm Mako multiline pillow pydantic python-dotenv qdrant-client uvicorn
 
 # Switch to the non-privileged user to run the application.
 USER appuser
