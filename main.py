@@ -50,12 +50,7 @@ llm.PROMPTS_PATH = os.getenv("PROMPTS_PATH")
 
 app = FastAPI()
 
-origins = [
-    "http://10.39.101.14",
-    "https://10.39.101.14:4200",
-    "http://localhost",
-    "http://localhost:4200",
-]
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
