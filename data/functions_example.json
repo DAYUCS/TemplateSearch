@@ -42,7 +42,7 @@
             {
                 "fieldName": "ADVISE_BANK",
                 "fieldType": "BANK",
-                "fieldDescription": "This refers to the Id of the Advising Bank."
+                "fieldDescription": "The Id of the Bank that the LC is advised by"
             },
             {
                 "fieldName": "AVAL_BY",
